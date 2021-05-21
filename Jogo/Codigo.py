@@ -43,6 +43,20 @@ while game:
             if event.key == pygame.K_DOWN:
                 ESTADO = ATAQUE
 
-    window.fill((255, 255, 255)) 
-    window.blit(background, (0, 0))
+    # atualiza a caixa de diálogo
+
+    if ESTADO == ATAQUE:
+            window.fill((0, 0, 0))  
+            window.blit(background, (0, 0))
+            window.blit(ataque,(0,430))
+    elif ESTADO == DEFESA:
+            window.fill((0, 0, 0))
+            window.blit(background, (0, 0))
+            window.blit(defesa,(0,430))
+    elif ESTADO == FUGIR:
+            window.fill((0, 0, 0))  
+            window.blit(background, (0, 0))
+            window.blit(fugir,(0,430))
+
+
     pygame.display.update()
