@@ -4,7 +4,8 @@ pygame.init()
 ALTURA = 600
 ESPESSURA = 480
 window = pygame.display.set_mode((ESPESSURA, ALTURA))
-
+background = pygame.image.load('imagens/fundo.jpg').convert()
+background = pygame.transform.scale(background, (ESPESSURA, ALTURA))
 game = True # condicao para o jogo continuar rodando
 
 clock = pygame.time.Clock()
@@ -19,4 +20,5 @@ while game:
             game = False
 
     window.fill((255, 255, 255)) #vai preencher a tela de branco
+    window.blit(background, (0, 0))
     pygame.display.update()
