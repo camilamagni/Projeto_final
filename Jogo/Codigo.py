@@ -16,6 +16,7 @@ atacar1 = pygame.image.load("imagens/Atacar.png")
 atacar1 = pygame.transform.scale(atacar1, (ESPESSURA,170))
 toshi = pygame.image.load("imagens/toshi.png")
 toshi = pygame.transform.scale(toshi, (150,150))
+dano =  pygame.image.load("imagens/dano.png")
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
@@ -33,6 +34,7 @@ ATAQUE = 0
 DEFESA = 1
 FUGIR = 2
 ATACAR = 3
+CONTRAATAQUE = 4
 ESTADO = ATAQUE
 while game:
     clock.tick(FPS)
@@ -47,7 +49,7 @@ while game:
                 ESTADO = FUGIR
             if event.key == pygame.K_DOWN:
                 ESTADO = DEFESA
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RETURN:
                 ESTADO = ATACAR
         elif event.type == pygame.KEYUP and ESTADO == DEFESA:
             if event.key == pygame.K_UP:
@@ -64,8 +66,13 @@ while game:
                 ESTADO = ATAQUE
             if event.key == pygame.K_RETURN:
                 life2-=20
-                Dp = font.render('Dp:{}'.format(life2), True, (255,255,255)) 
-                ESTADO = ATAQUE    
+                Dp = font.render('Dp:{}'.format(life2), True, (255,255,255))    
+                ESTADO = CONTRAATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == CONTRAATAQUE:
+            if event.key == pygame.K_RETURN:
+                ESTADO = ATAQUE
+                life-=15
+                paciencia = font.render('paciencia:{0}'.format(life), True,(255,255,255))
 
     # atualiza a caixa de diálogo
 
@@ -97,6 +104,12 @@ while game:
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(atacar1,(0,430))
-
+    elif ESTADO == CONTRAATAQUE:
+             window.fill((0, 0, 0))  
+             window.blit(background, (0, 0))
+             window.blit(toshi, (0, 210))
+             window.blit(paciencia, (0, 396))
+             window.blit(Dp, (ESPESSURA-110, 0))
+             window.blit(dano,(0,430))
 
     pygame.display.update()
