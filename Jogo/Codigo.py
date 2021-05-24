@@ -15,6 +15,11 @@ fugir = pygame.transform.scale(fugir, (ESPESSURA,170))
 atacar1 = pygame.image.load("imagens/Atacar.png")
 atacar1 = pygame.transform.scale(atacar1, (ESPESSURA,170))
 
+#----- textos para aparecer no jogo ----
+font = pygame.font.SysFont(None, 48)
+life = 100
+Hp = font.render('paciência:{0}'.format(life), True, (255,255,255))
+
 game = True # condicao para o jogo continuar rodando
 
 clock = pygame.time.Clock()
@@ -58,6 +63,7 @@ while game:
     if ESTADO == ATAQUE:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
+            window.blit(Hp, (0, 396))
             window.blit(ataque,(0,430))
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
