@@ -19,6 +19,9 @@ atacar1 = pygame.transform.scale(atacar1, (ESPESSURA,170))
 font = pygame.font.SysFont(None, 48)
 life = 100
 Hp = font.render('paciência:{0}'.format(life), True, (255,255,255))
+life2 = 100
+Dp = font.render('Dp:{}'.format(life2), True, (255,255,255)) 
+
 
 game = True # condicao para o jogo continuar rodando
 
@@ -63,19 +66,26 @@ while game:
     if ESTADO == ATAQUE:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
-            window.blit(Hp, (0, 396))
+            window.blit(paciencia, (0, 396))
+            window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(ataque,(0,430))
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
             window.blit(background, (0, 0))
+            window.blit(paciencia, (0, 396))
+            window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(defesa,(0,430))
     elif ESTADO == FUGIR:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
+            window.blit(paciencia, (0, 396))
+            window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(fugir,(0,430))
     elif ESTADO == ATACAR:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
+            window.blit(paciencia, (0, 396))
+            window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(atacar1,(0,430))
 
 
