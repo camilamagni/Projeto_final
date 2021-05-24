@@ -14,11 +14,13 @@ fugir = pygame.image.load("imagens/fugir.jpeg")
 fugir = pygame.transform.scale(fugir, (ESPESSURA,170))
 atacar1 = pygame.image.load("imagens/Atacar.png")
 atacar1 = pygame.transform.scale(atacar1, (ESPESSURA,170))
+toshi = pygame.image.load("imagens/toshi.png")
+toshi = pygame.transform.scale(toshi, (150,150))
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
 life = 100
-Hp = font.render('paciência:{0}'.format(life), True, (255,255,255))
+paciencia = font.render('paciência:{0}'.format(life), True, (255,255,255))
 life2 = 100
 Dp = font.render('Dp:{}'.format(life2), True, (255,255,255)) 
 
@@ -60,6 +62,10 @@ while game:
         elif event.type == pygame.KEYUP and ESTADO == ATACAR:
             if event.key == pygame.K_LEFT:
                 ESTADO = ATAQUE
+            if event.key == pygame.K_RETURN:
+                life2-=20
+                Dp = font.render('Dp:{}'.format(life2), True, (255,255,255)) 
+                ESTADO = ATAQUE    
 
     # atualiza a caixa de diálogo
 
@@ -67,23 +73,27 @@ while game:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
             window.blit(paciencia, (0, 396))
+            window.blit(toshi, (0, 210))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(ataque,(0,430))
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
             window.blit(background, (0, 0))
+            window.blit(toshi, (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(defesa,(0,430))
     elif ESTADO == FUGIR:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
+            window.blit(toshi, (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(fugir,(0,430))
     elif ESTADO == ATACAR:
             window.fill((0, 0, 0))  
             window.blit(background, (0, 0))
+            window.blit(toshi, (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(atacar1,(0,430))
