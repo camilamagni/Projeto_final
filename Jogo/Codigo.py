@@ -21,15 +21,26 @@ imagens['atacar1'] = pygame.transform.scale(atacar1, (ESPESSURA,170))
 toshi = pygame.image.load("imagens/toshi.png")
 imagens['toshi'] = pygame.transform.scale(toshi, (150,150))
 imagens['dano'] =  pygame.image.load("imagens/dano.png")
+personagem = pygame.image.load('imagens/Paola.png').convert_alpha()
+imagens['personagem'] = pygame.transform.scale(personagem, (100,100))
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
 life = 100
 paciencia = font.render('paciência:{0}'.format(life), True, (255,255,255))
 life2 = 100
-Dp = font.render('Dp:{}'.format(life2), True, (255,255,255)) 
+Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
 
-
+class personagem(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = ESPESSURA - 70
+        self.rect.bottom = ALTURA - 130
+avatar =  personagem(imagens['personagem'])
+sprites = pygame.sprite.Group()
+sprites.add(avatar)
 game = True # condicao para o jogo continuar rodando
 
 clock = pygame.time.Clock()
@@ -85,6 +96,7 @@ while game:
     if ESTADO == ATAQUE:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
             window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
@@ -92,6 +104,7 @@ while game:
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
             window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
             window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
@@ -99,6 +112,7 @@ while game:
     elif ESTADO == FUGIR:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
             window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
@@ -106,6 +120,7 @@ while game:
     elif ESTADO == ATACAR:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
             window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
@@ -113,6 +128,7 @@ while game:
     elif ESTADO == CONTRAATAQUE:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
             window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
