@@ -1,22 +1,26 @@
 import pygame
+
 pygame.init()
+
 # ------Gerar a tela do jogo --------
 ALTURA = 600
 ESPESSURA = 480
 window = pygame.display.set_mode((ESPESSURA, ALTURA))
+
+imagens = {}
 background = pygame.image.load('imagens/fundo.jpg').convert()
-background = pygame.transform.scale(background, (ESPESSURA, ALTURA))
+imagens['background'] = pygame.transform.scale(background, (ESPESSURA, ALTURA))
 ataque = pygame.image.load("imagens/ataque.jpeg")
-ataque = pygame.transform.scale(ataque, (ESPESSURA,170))
+imagens['ataque'] = pygame.transform.scale(ataque, (ESPESSURA,170))
 defesa = pygame.image.load("imagens/defesa.jpeg")
-defesa = pygame.transform.scale(defesa, (ESPESSURA,170))
+imagens['defesa'] = pygame.transform.scale(defesa, (ESPESSURA,170))
 fugir = pygame.image.load("imagens/fugir.jpeg")
-fugir = pygame.transform.scale(fugir, (ESPESSURA,170))
+imagens['fugir'] = pygame.transform.scale(fugir, (ESPESSURA,170))
 atacar1 = pygame.image.load("imagens/Atacar.png")
-atacar1 = pygame.transform.scale(atacar1, (ESPESSURA,170))
+imagens['atacar1'] = pygame.transform.scale(atacar1, (ESPESSURA,170))
 toshi = pygame.image.load("imagens/toshi.png")
-toshi = pygame.transform.scale(toshi, (150,150))
-dano =  pygame.image.load("imagens/dano.png")
+imagens['toshi'] = pygame.transform.scale(toshi, (150,150))
+imagens['dano'] =  pygame.image.load("imagens/dano.png")
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
@@ -30,11 +34,13 @@ game = True # condicao para o jogo continuar rodando
 
 clock = pygame.time.Clock()
 FPS = 30 #define velocidade dos quadros do jogo 
+
 ATAQUE = 0
 DEFESA = 1
 FUGIR = 2
 ATACAR = 3
 CONTRAATAQUE = 4
+
 ESTADO = ATAQUE
 while game:
     clock.tick(FPS)
@@ -78,38 +84,38 @@ while game:
 
     if ESTADO == ATAQUE:
             window.fill((0, 0, 0))  
-            window.blit(background, (0, 0))
+            window.blit(imagens['background'], (0, 0))
+            window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
-            window.blit(toshi, (0, 210))
             window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(ataque,(0,430))
+            window.blit(imagens['ataque'],(0,430))
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
-            window.blit(background, (0, 0))
-            window.blit(toshi, (0, 210))
+            window.blit(imagens['background'], (0, 0))
+            window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(defesa,(0,430))
+            window.blit(imagens['defesa'],(0,430))
     elif ESTADO == FUGIR:
             window.fill((0, 0, 0))  
-            window.blit(background, (0, 0))
-            window.blit(toshi, (0, 210))
+            window.blit(imagens['background'], (0, 0))
+            window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(fugir,(0,430))
+            window.blit(imagens['fugir'],(0,430))
     elif ESTADO == ATACAR:
             window.fill((0, 0, 0))  
-            window.blit(background, (0, 0))
-            window.blit(toshi, (0, 210))
+            window.blit(imagens['background'], (0, 0))
+            window.blit(imagens['toshi'], (0, 210))
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(atacar1,(0,430))
+            window.blit(imagens['atacar1'],(0,430))
     elif ESTADO == CONTRAATAQUE:
-             window.fill((0, 0, 0))  
-             window.blit(background, (0, 0))
-             window.blit(toshi, (0, 210))
-             window.blit(paciencia, (0, 396))
-             window.blit(Dp, (ESPESSURA-110, 0))
-             window.blit(dano,(0,430))
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            window.blit(imagens['toshi'], (0, 210))
+            window.blit(paciencia, (0, 396))
+            window.blit(Dp, (ESPESSURA-110, 0))
+            window.blit(imagens['dano'],(0,430))
 
     pygame.display.update()
