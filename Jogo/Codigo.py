@@ -34,6 +34,23 @@ paciencia = font.render('paciência:{0}'.format(life), True, (255,255,255))
 life2 = 100
 Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
 
+class Toshi(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = 0
+        self.rect.bottom = 210
+
+class Toshi2(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = ESPESSURA/2
+        self.rect.bottom = ALTURA - 300
+
+
 class personagem(pygame.sprite.Sprite):
     def __init__(self, img, sprites, projeteis, anima_ataque):
         pygame.sprite.Sprite.__init__(self)
@@ -85,12 +102,22 @@ class projetil(pygame.sprite.Sprite):
 
 sprites = pygame.sprite.Group()
 projeteis = pygame.sprite.Group()
-
+toshis = pygame.sprite.Group()
+toshis_bravos = pygame.sprite.Group()
 acao = pygame.sprite.Group()
+
 avatar =  personagem(imagens['personagem'],sprites,projeteis,anima_ataque)
+
 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,anima_ataque)
+
+vilao = Toshi(imagens['toshi'])
+
+vilao2 = Toshi2(imagens['toshi'])
+
 sprites.add(avatar)
 acao.add(avatar2)
+toshis.add(vilao)
+toshis_bravos.add(vilao2)
 
 game = True # condicao para o jogo continuar rodando
 
@@ -150,7 +177,7 @@ while game:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
-            window.blit(imagens['toshi'], (0, 210))
+            toshis.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['ataque'],(0,430))
@@ -158,7 +185,7 @@ while game:
             window.fill((0, 0, 0))
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
-            window.blit(imagens['toshi'], (0, 210))
+            toshis.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['defesa'],(0,430))
@@ -166,7 +193,7 @@ while game:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
-            window.blit(imagens['toshi'], (0, 210))
+            toshis.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['fugir'],(0,430))
@@ -174,7 +201,7 @@ while game:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
-            window.blit(imagens['toshi'], (0, 210))
+            toshis.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['atacar1'],(0,430))
@@ -182,7 +209,7 @@ while game:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
-            window.blit(imagens['toshi'], (0, 210))
+            toshis_bravos.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['dano'],(0,430))
@@ -191,10 +218,12 @@ while game:
             window.blit(imagens['background'], (0, 0))
             acao.draw(window)
             projeteis.draw(window)
-            window.blit(imagens['toshi'], (0, 210))
+            toshis_bravos.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
 
     sprites.update()
     acao.update()
+    toshis_bravos.update()
+    toshis.update()
     pygame.display.update()
