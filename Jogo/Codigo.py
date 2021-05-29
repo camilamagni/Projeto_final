@@ -23,6 +23,8 @@ imagens['toshi'] = pygame.transform.scale(toshi, (150,150))
 imagens['dano'] =  pygame.image.load("imagens/dano.png")
 personagem = pygame.image.load('imagens/Paola.png').convert_alpha()
 imagens['personagem'] = pygame.transform.scale(personagem, (100,100))
+anima_ataque = pygame.image.load('imagens/binario2.png').convert()
+anima_ataque =pygame.transform.scale(anima_ataque, (110,110))
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
@@ -38,9 +40,37 @@ class personagem(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = ESPESSURA - 70
         self.rect.bottom = ALTURA - 130
-avatar =  personagem(imagens['personagem'])
+        self.sprites = sprites
+        self.projeteis = projeteis
+        self.anima_ataque = anima_ataque
+
+    def ataque(self):
+        codigos = projetil(self.anima_ataque, self.rect.top, self.rect.centerx)
+        self.sprites.add(codigos)
+        self.projeteis.add(codigos)
+
+class projetil(pygame.sprite.Sprite):
+    def __init__(self,img,bottom,centerx):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = centerx
+        self.rect.bottom = bottom
+        self.speedy = -10
+
+    def update(self):
+        self.rect.y += self.speedy
+
+        if self.rect.bottom <0:
+            self.kill()
+
+
 sprites = pygame.sprite.Group()
+projeteis = pygame.sprite.Group()
+
+avatar =  personagem(imagens['personagem'])
 sprites.add(avatar)
+
 game = True # condicao para o jogo continuar rodando
 
 clock = pygame.time.Clock()
@@ -82,6 +112,7 @@ while game:
             if event.key == pygame.K_LEFT:
                 ESTADO = ATAQUE
             if event.key == pygame.K_RETURN:
+                avatar.ataque()
                 life2-=20
                 Dp = font.render('Dp:{}'.format(life2), True, (255,255,255))    
                 ESTADO = CONTRAATAQUE
@@ -134,4 +165,5 @@ while game:
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['dano'],(0,430))
 
+    sprites.update()
     pygame.display.update()
