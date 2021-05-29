@@ -4,7 +4,8 @@ pygame.init()
 
 # ------Gerar a tela do jogo --------
 ALTURA = 600
-ESPESSURA = 480
+ESPESSURA = 720
+
 window = pygame.display.set_mode((ESPESSURA, ALTURA))
 
 imagens = {}
@@ -34,11 +35,28 @@ life2 = 100
 Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
 
 class personagem(pygame.sprite.Sprite):
-    def __init__(self, img):
+    def __init__(self, img, sprites, projeteis, anima_ataque):
         pygame.sprite.Sprite.__init__(self)
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.centerx = ESPESSURA - 70
+        self.rect.bottom = ALTURA - 130
+        self.sprites = sprites
+        self.projeteis = projeteis
+        self.anima_ataque = anima_ataque
+
+    def ataque(self):
+        codigos = projetil(self.anima_ataque, self.rect.top, self.rect.centerx)
+        self.sprites.add(codigos)
+        self.projeteis.add(codigos)
+
+class personagem2(pygame.sprite.Sprite):
+    def __init__(self, img,sprites,projeteis,anima_ataque):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = ESPESSURA/2
         self.rect.bottom = ALTURA - 130
         self.sprites = sprites
         self.projeteis = projeteis
@@ -68,8 +86,11 @@ class projetil(pygame.sprite.Sprite):
 sprites = pygame.sprite.Group()
 projeteis = pygame.sprite.Group()
 
-avatar =  personagem(imagens['personagem'])
+acao = pygame.sprite.Group()
+avatar =  personagem(imagens['personagem'],sprites,projeteis,anima_ataque)
+avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,anima_ataque)
 sprites.add(avatar)
+acao.add(avatar2)
 
 game = True # condicao para o jogo continuar rodando
 
@@ -81,6 +102,7 @@ DEFESA = 1
 FUGIR = 2
 ATACAR = 3
 CONTRAATAQUE = 4
+ACAO_ATAQUE = 5
 
 ESTADO = ATAQUE
 while game:
@@ -112,10 +134,10 @@ while game:
             if event.key == pygame.K_LEFT:
                 ESTADO = ATAQUE
             if event.key == pygame.K_RETURN:
-                avatar.ataque()
+                avatar2.ataque()
                 life2-=20
                 Dp = font.render('Dp:{}'.format(life2), True, (255,255,255))    
-                ESTADO = CONTRAATAQUE
+                ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == CONTRAATAQUE:
             if event.key == pygame.K_RETURN:
                 ESTADO = ATAQUE
@@ -164,6 +186,15 @@ while game:
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
             window.blit(imagens['dano'],(0,430))
+    elif ESTADO == ACAO_ATAQUE:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            acao.draw(window)
+            projeteis.draw(window)
+            window.blit(imagens['toshi'], (0, 210))
+            window.blit(paciencia, (0, 396))
+            window.blit(Dp, (ESPESSURA-110, 0))
 
     sprites.update()
+    acao.update()
     pygame.display.update()
