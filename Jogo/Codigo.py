@@ -67,6 +67,17 @@ anima_ataque =pygame.transform.scale(anima_ataque, (50,50))
 personagem_quarto = pygame.image.load('imagens/Paola2_back.png').convert_alpha()
 imagens['personagem_quarto'] = pygame.transform.scale(personagem_quarto,(100,100))
 
+final_dia = pygame.image.load('imagens/fim_dia1.jpg')
+imagens['fim_dia1'] = pygame.transform.scale(final_dia,(720,150))
+na_cadeira = pygame.image.load('imagens/Paola_cadeira_clear.png').convert_alpha()
+imagens['na_cadeira'] = pygame.transform.scale(na_cadeira, (100,100))
+shingeki = pygame.image.load('imagens/shingeki.jpg')
+imagens['shingeki'] = pygame.transform.scale(shingeki, (50,55))
+academia_python = pygame.image.load('imagens/academia_python.jpg')
+imagens['academia'] = pygame.transform.scale(academia_python, (50,55))
+pontos_20 = pygame.image.load('imagens/ct_20_pontos.png')
+imagens['proficiente20'] = pygame.transform.scale(pontos_20,(720,150))
+
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
 life = 100
@@ -79,15 +90,28 @@ prof= 10
 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
 
 up_prof = []
+up_prof15 = []
+up_prof10 = []
+up_prof20 = []
 
 for i in range(8):
-    # Os arquivos de animação são numerados de 00 a 08
-    foto = 'imagens/up/mais_15_{}.png'.format(i+1)
-    upgrade = pygame.image.load(foto).convert()
-    upgrade = pygame.transform.scale(upgrade, (32, 32))
-    up_prof.append(upgrade)
-imagens['up_prof'] = up_prof
+    # Os arquivos de animação são numerados de 1 a 8
+    imagem15 = 'imagens/up/mais_15_{}.png'.format(i+1)
+    imagem10 = 'imagens/up/mais_10_{}.png'.format(i+1)
+    imagem20 = 'imagens/up/mais_20_{}.png'.format(i+1)
+    upgrade15 = pygame.image.load(imagem15).convert()
+    upgrade10 = pygame.image.load(imagem10).convert()
+    upgrade20 = pygame.image.load(imagem20).convert()
+    upgrade10 = pygame.transform.scale(upgrade10, (32, 32))
+    upgrade15 = pygame.transform.scale(upgrade15, (32, 32))
+    upgrade20 = pygame.transform.scale(upgrade20, (32, 32))
+    up_prof15.append(upgrade15)
+    up_prof10.append(upgrade10)
+    up_prof20.append(upgrade20)
 
+imagens['up_prof15'] = up_prof15
+imagens['up_prof10'] = up_prof10
+imagens['up_prof20'] = up_prof20
 class Toshi(pygame.sprite.Sprite):
     def __init__(self, img):
         pygame.sprite.Sprite.__init__(self)
@@ -155,12 +179,12 @@ class projetil(pygame.sprite.Sprite):
 
 class upgrade(pygame.sprite.Sprite):
     # Construtor da classe.
-    def __init__(self, center, bottom, assets):
+    def __init__(self, center, bottom, assets, nome):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
         # Armazena a animação do upgrade
-        self.up_prof = assets['up_prof']
+        self.up_prof = assets[nome]
 
         # Inicia o processo de animação colocando a primeira imagem na tela.
         self.frame = 0  # Armazena o índice atual na animação
@@ -207,7 +231,9 @@ toshis = pygame.sprite.Group()
 toshis_bravos = pygame.sprite.Group()
 acao = pygame.sprite.Group()
 
-up_prof_sprite = pygame.sprite.Group()
+up_prof_sprite15 = pygame.sprite.Group()
+up_prof_sprite10 = pygame.sprite.Group()
+up_prof_sprite20 = pygame.sprite.Group()
 
 avatar =  personagem(imagens['personagem'],sprites,projeteis,anima_ataque)
 
@@ -216,8 +242,16 @@ avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,anima_ataque)
 vilao = Toshi(imagens['toshi'])
 
 vilao2 = Toshi2(imagens['toshi'])
-up_prof = upgrade(150,500,imagens)
-up_prof_sprite.add(up_prof)
+
+up_prof15_class = upgrade(150,500,imagens, 'up_prof15')
+up_prof_sprite15.add(up_prof15_class)
+
+up_prof10_class = upgrade(150,500,imagens, 'up_prof10')
+up_prof_sprite10.add(up_prof10_class)
+
+up_prof20_class = upgrade(150,500,imagens, 'up_prof20')
+up_prof_sprite20.add(up_prof20_class)
+
 
 sprites.add(avatar)
 acao.add(avatar2)
@@ -246,11 +280,13 @@ SAD_ANIME = 13
 SAD_ANIME2 = 14
 ANIME_ESTUDAR_ESTUDAR = 15
 ESTUDAR_ESTUDAR = 16
-GANHA_PONTO = 17
+GANHA_PONTO15 = 17
 CONTINUAR_SIM = 18
 CONTINUAR_NAO = 19 
 RECOMECAR = 20
-ESTADO = QUARTO
+FIM_DIA1 = 21
+GANHA_PONTO20 = 22
+ESTADO = ANIME
 
 
 while game:
@@ -283,13 +319,13 @@ while game:
                 ESTADO = ATAQUE
             if event.key == pygame.K_RETURN:
                 avatar2.ataque()
-                life2-=20
+                life2 -= 20
                 Dp = font.render('Dp:{}'.format(life2), True, (255,255,255))    
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == CONTRAATAQUE:
             if event.key == pygame.K_RETURN:
                 ESTADO = ATAQUE
-                life-=15
+                life -= 15
                 paciencia = font.render('paciencia:{0}'.format(life), True,(255,255,255))
         elif event.type == pygame.KEYUP and ESTADO == QUARTO:
             if event.key == pygame.K_RETURN:
@@ -326,6 +362,9 @@ while game:
         elif event.type == pygame.KEYUP and ESTADO == SAD_ANIME:
             if event.key == pygame.K_RETURN:
                 ESTADO = SAD_ANIME2
+        elif event.type == pygame.KEYUP and ESTADO == SAD_ANIME2:
+            if event.key == pygame.K_RETURN:
+                ESTADO = FIM_DIA1
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUD:
             if event.key == pygame.K_DOWN:
                 ESTADO = ANIME_ANIME
@@ -335,10 +374,15 @@ while game:
                 ESTADO = ANIME_ESTUDAR_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
-                ESTADO = GANHA_PONTO
+                ESTADO = GANHA_PONTO15
                 prof += 15
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
-        elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO:
+        elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
+            if event.key == pygame.K_RETURN:
+                ESTADO = GANHA_PONTO15
+                prof += 15
+                proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
+        elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15:
             if event.key == pygame.K_RETURN:
                 ESTADO = CONTINUAR_SIM
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_SIM:
@@ -346,6 +390,11 @@ while game:
                 ESTADO = CONTINUAR_NAO
             if event.key == pygame.K_DOWN:
                 ESTADO = CONTINUAR_NAO
+            if event.key == pygame.K_RETURN:
+                ESTADO = GANHA_PONTO20
+                prof += 20
+                proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
+
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_SIM
@@ -376,19 +425,22 @@ while game:
         window.blit(proficiencia, (10, 500))
     elif ESTADO == ANIME_ESTUDAR_ESTUDAR:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['estudar_pos_anime'], (0, 0))
         window.blit(proficiencia, (10, 500))
+        window.blit(imagens['academia'],(145,370))
     elif ESTADO == ANIME_ANIME:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['pos_anime_anime'], (0, 0))
         window.blit(proficiencia, (10, 500))
+        window.blit(imagens['shingeki'],(145,370))
     elif ESTADO == ANIME_ESTUD:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['pos_anime_estudar'], (0, 0))
         window.blit(proficiencia, (10, 500))
+        window.blit(imagens['shingeki'],(145,370))
     elif ESTADO == RECOMECAR:
         window.fill((0, 0, 0))
         window.blit(imagens['quarto'], (0, 0))
@@ -396,12 +448,12 @@ while game:
         window.blit(imagens['recomeco'], (0, 0))
     elif ESTADO == CONTINUAR_SIM:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['continua_sim'], (0, 0))
         window.blit(proficiencia, (10, 500))
     elif ESTADO == CONTINUAR_NAO:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['continua_nao'], (0, 0))
         window.blit(proficiencia, (10, 500))
     elif ESTADO == SAD_ANIME:
@@ -411,14 +463,24 @@ while game:
         window.blit(proficiencia, (10, 500))
     elif ESTADO == ESTUDAR_ESTUDAR:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['pos_estudar'], (0, 0))
         window.blit(proficiencia, (10, 500))
-    elif ESTADO == GANHA_PONTO:
+        window.blit(imagens['academia'],(145,370))
+    elif ESTADO == GANHA_PONTO15:
         window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['proficiente'], (0, 0))
         window.blit(proficiencia, (10, 500))
+        up_prof_sprite15.draw(window)
+        up_prof_sprite15.update()
+    elif ESTADO == GANHA_PONTO20:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['proficiente20'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+        up_prof_sprite20.draw(window)
+        up_prof_sprite20.update()
     elif ESTADO == SAD_ANIME2:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
@@ -433,6 +495,11 @@ while game:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['dormir'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+    elif ESTADO == FIM_DIA1:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['fim_dia1'], (0, 0))
         window.blit(proficiencia, (10, 500))
     elif ESTADO == ATAQUE:    
             window.fill((0, 0, 0))  
@@ -483,9 +550,9 @@ while game:
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
 
-    if ESTADO == GANHA_PONTO:
-        up_prof_sprite.draw(window)
-        up_prof_sprite.update()
+    if ESTADO == GANHA_PONTO15:
+        up_prof_sprite15.draw(window)
+        up_prof_sprite15.update()
 
     sprites.update()
     acao.update()
