@@ -68,7 +68,7 @@ personagem_quarto = pygame.image.load('imagens/Paola2_back.png').convert_alpha()
 imagens['personagem_quarto'] = pygame.transform.scale(personagem_quarto,(100,100))
 
 final_dia = pygame.image.load('imagens/fim_dia1.jpg')
-imagens['fim_dia1'] = pygame.transform.scale(final_dia,(720,150))
+imagens['FIM_DIA_SO_ANIME'] = pygame.transform.scale(final_dia,(720,150))
 na_cadeira = pygame.image.load('imagens/Paola_cadeira_clear.png').convert_alpha()
 imagens['na_cadeira'] = pygame.transform.scale(na_cadeira, (100,100))
 shingeki = pygame.image.load('imagens/shingeki.jpg')
@@ -77,6 +77,41 @@ academia_python = pygame.image.load('imagens/academia_python.jpg')
 imagens['academia'] = pygame.transform.scale(academia_python, (50,55))
 pontos_20 = pygame.image.load('imagens/ct_20_pontos.png')
 imagens['proficiente20'] = pygame.transform.scale(pontos_20,(720,150))
+
+pontos_10 = pygame.image.load('imagens/ct_10_pontos.png')
+imagens['proficiente10'] = pygame.transform.scale(pontos_10,(720,150))
+fim_dia_anime_estudar = pygame.image.load('imagens/ct_fim_dia_anime_estudar.jpg')
+imagens['fim_dia_anime_estudar'] = pygame.transform.scale(fim_dia_anime_estudar,(720,150))
+fim_dia_so_estudar = pygame.image.load('imagens/ct_fim_dia_so_estudo.jpg')
+imagens['fim_dia_so_estudar'] = pygame.transform.scale(fim_dia_anime_estudar,(720,150))
+anime_nao_estudar_serie = pygame.image.load('imagens/ct_anime_nao_estudar_serie.jpg')
+imagens['anime_nao_estudar_serie'] = pygame.transform.scale(anime_nao_estudar_serie,(720,150))
+anime_nao_estudar_dormir = pygame.image.load('imagens/ct_anime_nao_estudar_dormir.jpg')
+imagens['anime_nao_estudar_dormir'] = pygame.transform.scale(anime_nao_estudar_dormir,(720,150))
+series = pygame.image.load('imagens/series_plat.jpg')
+imagens['series'] = pygame.transform.scale(series, (50,55))
+acorda_tarde = pygame.image.load('imagens/ct_acordou_tarde_serie.jpg')
+imagens['acordou_tarde_serie'] =  pygame.transform.scale(acorda_tarde, (720,150))
+dormir_mais = pygame.image.load('imagens/ct_dormir_muito.jpg')
+imagens['dormir_muito'] = pygame.transform.scale(dormir_mais, (720,150))
+dia2_estudar = pygame.image.load('imagens/dia2_estudar.jpg')
+imagens['dia2_estudar'] = pygame.transform.scale(dia2_estudar, (720,150))
+dia2_dormir = pygame.image.load('imagens/dia2_dormir.jpg')
+imagens['dia2_dormir'] = pygame.transform.scale(dia2_dormir, (720,150))
+dia2_anime = pygame.image.load('imagens/dia2_anime.jpg')
+imagens['dia2_anime'] = pygame.transform.scale(dia2_anime, (720,150))
+estudar_serie = pygame.image.load('imagens/ct_estudar_serie.jpg')
+imagens['estudar_serie'] = pygame.transform.scale(estudar_serie, (720,150))
+estudar_dormir = pygame.image.load('imagens/ct_estudar_dormir.jpg')
+imagens['estudar_dormir'] = pygame.transform.scale(estudar_dormir, (720,150))
+serie_dormir = pygame.image.load('imagens/ct_serie_dormir.jpg')
+imagens['serie_dormir'] = pygame.transform.scale(serie_dormir, (720,150))
+estudou_muito = pygame.image.load('imagens/ct_estudou_muito.jpg')
+imagens['estudou_muito'] = pygame.transform.scale(estudou_muito, (720,150))
+
+
+
+
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
@@ -284,9 +319,25 @@ GANHA_PONTO15 = 17
 CONTINUAR_SIM = 18
 CONTINUAR_NAO = 19 
 RECOMECAR = 20
-FIM_DIA1 = 21
+FIM_DIA_SO_ANIME = 21
 GANHA_PONTO20 = 22
-ESTADO = ANIME
+GANHA_PONTO10 = 23
+CONTINUAR_SIM_1 = 24
+CONTINUAR_NAO_1 = 25
+GANHA_PONTO15_1 = 26
+FIM_DIA_ANIME_E_ESTUDA = 27
+ANIME_NAO_SERIE = 28
+ANIME_NAO_DORMIR = 29
+ANIME_SERIE = 30 
+DORMIR_MUITO = 31
+DIA2_ANIME = 32
+DIA2_ESTUDAR = 33
+DIA2_DORMIR = 34
+ESTUDAR_DORMIR = 35
+ESTUDAR_SERIE = 36
+SERIE_DORMIR = 37
+ESTUDOU_MUITO = 38
+ESTADO = QUARTO
 
 
 while game:
@@ -435,6 +486,14 @@ while game:
         window.blit(imagens['pos_anime_anime'], (0, 0))
         window.blit(proficiencia, (10, 500))
         window.blit(imagens['shingeki'],(145,370))
+
+    elif ESTADO == ANIME_SERIE:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['acordou_tarde_serie'], (0, 0))
+        window.blit(imagens['series'],(145,370))
+        window.blit(proficiencia, (10, 500))
+
     elif ESTADO == ANIME_ESTUD:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
@@ -450,12 +509,44 @@ while game:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['continua_sim'], (0, 0))
+        window.blit(imagens['academia'],(145,370))
         window.blit(proficiencia, (10, 500))
     elif ESTADO == CONTINUAR_NAO:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['continua_nao'], (0, 0))
+        window.blit(imagens['academia'],(145,370))
         window.blit(proficiencia, (10, 500))
+
+    elif ESTADO == CONTINUAR_SIM_1:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['continua_sim'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+     elif ESTADO == CONTINUAR_NAO_1:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['continua_nao'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+
+     elif ESTADO == ESTUDAR_DORMIR:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['estudar_dormir'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+
+     elif ESTADO == ESTUDAR_SERIE:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['estudar_serie'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+
+     elif ESTADO == SERIE_DORMIR:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (270, 400))
+        window.blit(imagens['serie_dormir'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+
     elif ESTADO == SAD_ANIME:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
@@ -474,13 +565,46 @@ while game:
         window.blit(proficiencia, (10, 500))
         up_prof_sprite15.draw(window)
         up_prof_sprite15.update()
+
+    elif ESTADO == GANHA_PONTO15_1:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['proficiente'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+        up_prof_sprite15.draw(window)
+        up_prof_sprite15.update()
+
     elif ESTADO == GANHA_PONTO20:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['proficiente20'], (0, 0))
+        window.blit(imagens['academia'],(145,370))
         window.blit(proficiencia, (10, 500))
         up_prof_sprite20.draw(window)
         up_prof_sprite20.update()
+
+    elif ESTADO == GANHA_PONTO10:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['proficiente10'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+        up_prof_sprite10.draw(window)
+        up_prof_sprite10.update()
+
+
+     elif ESTADO == ANIME_NAO_SERIE:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['anime_nao_estudar_serie'], (0, 0))
+        window.blit(imagens['academia'],(145,370))
+        window.blit(proficiencia, (10, 500))   
+     elif ESTADO == ANIME_NAO_DORMIR:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['na_cadeira'], (270, 400))
+        window.blit(imagens['anime_nao_estudar_dormir'], (0, 0))
+        window.blit(imagens['academia'],(145,370))
+        window.blit(proficiencia, (10, 500))
+    
     elif ESTADO == SAD_ANIME2:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
@@ -496,11 +620,43 @@ while game:
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['dormir'], (0, 0))
         window.blit(proficiencia, (10, 500))
-    elif ESTADO == FIM_DIA1:
+    elif ESTADO == DORMIR_MUITO:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
-        window.blit(imagens['fim_dia1'], (0, 0))
+        window.blit(imagens['dormir_muito'], (0, 0))
         window.blit(proficiencia, (10, 500))
+
+    elif ESTADO == FIM_DIA_SO_ANIME:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['FIM_DIA_SO_ANIME'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+     elif ESTADO == FIM_DIA_ANIME_E_ESTUDA:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['fim_dia_anime_estudar'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+     elif ESTADO == DIA2_ANIME:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['dia2_anime'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+     elif ESTADO == DIA2_DORMIR:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['dia2_dormir'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+     elif ESTADO == DIA2_ESTUDAR:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['dia2_estudar'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+     elif ESTADO == ESTUDOU_MUITO:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['estudou_muito'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+
     elif ESTADO == ATAQUE:    
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
@@ -549,10 +705,6 @@ while game:
             toshis_bravos.draw(window)
             window.blit(paciencia, (0, 396))
             window.blit(Dp, (ESPESSURA-110, 0))
-
-    if ESTADO == GANHA_PONTO15:
-        up_prof_sprite15.draw(window)
-        up_prof_sprite15.update()
 
     sprites.update()
     acao.update()
