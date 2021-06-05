@@ -403,6 +403,29 @@ while game:
                 ESTADO = ANIME
             if event.key == pygame.K_UP:
                 ESTADO = ESTUDAR
+            if event.key == pygame.K_RETURN:
+                ESTADO = DORMIR_MUITO
+        elif event.type == pygame.KEYUP and ESTADO == DORMIR_MUITO:
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == DIA2_ESTUDAR:
+            if event.key == pygame.K_DOWN:
+                ESTADO = DIA2_ANIME
+            if event.key == pygame.K_UP:
+                ESTADO = DIA2_DORMIR
+            if event.key == pygame.K_RETURN:
+                ESTADO = ESTUDAR_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == DIA2_ANIME:
+            if event.key == pygame.K_DOWN:
+                ESTADO = DIA2_DORMIR
+            if event.key == pygame.K_UP:
+                ESTADO = DIA2_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == DIA2_DORMIR:
+            if event.key == pygame.K_DOWN:
+                ESTADO = DIA2_ESTUDAR
+            if event.key == pygame.K_UP:
+                ESTADO = DIA2_ANIME
+                
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ANIME :
             if event.key == pygame.K_DOWN:
                 ESTADO = ANIME_ESTUD
@@ -415,7 +438,10 @@ while game:
                 ESTADO = SAD_ANIME2
         elif event.type == pygame.KEYUP and ESTADO == SAD_ANIME2:
             if event.key == pygame.K_RETURN:
-                ESTADO = FIM_DIA1
+                ESTADO = FIM_DIA_SO_ANIME
+        elif event.type == pygame.KEYUP and ESTADO == FIM_DIA_SO_ANIME:
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUD:
             if event.key == pygame.K_DOWN:
                 ESTADO = ANIME_ANIME
@@ -425,8 +451,8 @@ while game:
                 ESTADO = ANIME_ESTUDAR_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
-                ESTADO = GANHA_PONTO15
-                prof += 15
+                ESTADO = GANHA_PONTO10
+                prof += 10
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
@@ -436,6 +462,9 @@ while game:
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15:
             if event.key == pygame.K_RETURN:
                 ESTADO = CONTINUAR_SIM
+        elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO10:
+            if event.key == pygame.K_RETURN:
+                ESTADO = CONTINUAR_SIM_1
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_SIM:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_NAO
@@ -446,6 +475,51 @@ while game:
                 prof += 20
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
 
+        elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO20:
+            if event.key == pygame.K_RETURN:
+                ESTADO = ESTUDOU_MUITO
+        elif  event.type == pygame.KEYUP and ESTADO == ESTUDOU_MUITO:
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_SIM_1:
+            if event.key == pygame.K_UP:
+                ESTADO = CONTINUAR_NAO_1
+            if event.key == pygame.K_DOWN:
+                ESTADO = CONTINUAR_NAO_1
+            if event.key == pygame.K_RETURN:
+                ESTADO = GANHA_PONTO15_1
+                prof += 15
+                proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255)) 
+        elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO_1:
+            if event.key == pygame.K_UP:
+                ESTADO = CONTINUAR_SIM_1
+            if event.key == pygame.K_DOWN:
+                ESTADO = CONTINUAR_SIM_1
+            if event.key == pygame.K_RETURN:
+                ESTADO = ANIME_NAO_SERIE
+        elif event.type == pygame.KEYUP and ESTADO == ANIME_NAO_SERIE:
+            if event.key == pygame.K_RETURN:
+                ESTADO = ANIME_SERIE
+            if event.key == pygame.K_UP:
+                ESTADO = ANIME_NAO_DORMIR
+            if event.key == pygame.K_DOWN:
+                ESTADO = ANIME_NAO_DORMIR
+        elif event.type == pygame.KEYUP and ESTADO == ANIME_SERIE:
+            if event.key == pygame.K_RETURN:
+                ESTADO = SERIE_DORMIR
+        elif event.type == pygame.KEYUP and ESTADO == ANIME_NAO_DORMIR:
+            if event.key == pygame.K_UP:
+                ESTADO = ANIME_NAO_SERIE
+            if event.key == pygame.K_DOWN:
+                ESTADO = ANIME_NAO_SERIE
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15_1:
+            if event.key == pygame.K_RETURN:
+                ESTADO = FIM_DIA_ANIME_E_ESTUDA
+        elif event.type == pygame.KEYUP and ESTADO == FIM_DIA_ANIME_E_ESTUDA:
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_SIM
@@ -453,7 +527,27 @@ while game:
                 ESTADO = CONTINUAR_SIM
         elif event.type == pygame.KEYUP and ESTADO == SAD_ANIME2:
             if event.key == pygame.K_RETURN:
-                ESTADO == RECOMECAR       
+                ESTADO = ESTUDAR_SERIE
+        elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_SERIE:
+            if event.key == pygame.K_UP:
+                ESTADO = ESTUDAR_DORMIR
+            if event.key == pygame.K_DOWN:
+                ESTADO = ESTUDAR_DORMIR
+            if event.key == pygame.K_RETURN:
+                ESTADO = SERIE_DORMIR
+        elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_DORMIR:
+            if event.key == pygame.K_UP:
+                ESTADO = ESTUDAR_SERIE
+            if event.key == pygame.K_DOWN:
+                ESTADO = ESTUDAR_SERIE
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == SERIE_DORMIR:
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIA2_ESTUDAR
+        if  event.type == pygame.KEYUP:
+            if event.key == pygame.K_0:
+                ESTADO = ANIME
 
     hits = pygame.sprite.spritecollide(vilao2,projeteis, True)
     if len(hits) > 0:
@@ -523,25 +617,25 @@ while game:
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['continua_sim'], (0, 0))
         window.blit(proficiencia, (10, 500))
-     elif ESTADO == CONTINUAR_NAO_1:
+    elif ESTADO == CONTINUAR_NAO_1:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['continua_nao'], (0, 0))
         window.blit(proficiencia, (10, 500))
 
-     elif ESTADO == ESTUDAR_DORMIR:
+    elif ESTADO == ESTUDAR_DORMIR:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['estudar_dormir'], (0, 0))
         window.blit(proficiencia, (10, 500))
 
-     elif ESTADO == ESTUDAR_SERIE:
+    elif ESTADO == ESTUDAR_SERIE:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['estudar_serie'], (0, 0))
         window.blit(proficiencia, (10, 500))
 
-     elif ESTADO == SERIE_DORMIR:
+    elif ESTADO == SERIE_DORMIR:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (270, 400))
         window.blit(imagens['serie_dormir'], (0, 0))
@@ -592,13 +686,13 @@ while game:
         up_prof_sprite10.update()
 
 
-     elif ESTADO == ANIME_NAO_SERIE:
+    elif ESTADO == ANIME_NAO_SERIE:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['anime_nao_estudar_serie'], (0, 0))
         window.blit(imagens['academia'],(145,370))
         window.blit(proficiencia, (10, 500))   
-     elif ESTADO == ANIME_NAO_DORMIR:
+    elif ESTADO == ANIME_NAO_DORMIR:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
         window.blit(imagens['anime_nao_estudar_dormir'], (0, 0))
@@ -631,27 +725,27 @@ while game:
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['FIM_DIA_SO_ANIME'], (0, 0))
         window.blit(proficiencia, (10, 500))
-     elif ESTADO == FIM_DIA_ANIME_E_ESTUDA:
+    elif ESTADO == FIM_DIA_ANIME_E_ESTUDA:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['fim_dia_anime_estudar'], (0, 0))
         window.blit(proficiencia, (10, 500))
-     elif ESTADO == DIA2_ANIME:
+    elif ESTADO == DIA2_ANIME:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['dia2_anime'], (0, 0))
         window.blit(proficiencia, (10, 500))
-     elif ESTADO == DIA2_DORMIR:
+    elif ESTADO == DIA2_DORMIR:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['dia2_dormir'], (0, 0))
         window.blit(proficiencia, (10, 500))
-     elif ESTADO == DIA2_ESTUDAR:
+    elif ESTADO == DIA2_ESTUDAR:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['dia2_estudar'], (0, 0))
         window.blit(proficiencia, (10, 500))
-     elif ESTADO == ESTUDOU_MUITO:
+    elif ESTADO == ESTUDOU_MUITO:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['estudou_muito'], (0, 0))
