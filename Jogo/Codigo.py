@@ -633,6 +633,7 @@ while game:
                 Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
                 attack = 'atacar_while'
                 ESTADO = ACAO_ATAQUE
+
         elif event.type == pygame.KEYUP and ESTADO == DEFESA:
             if event.key == pygame.K_UP:
                 ESTADO = ATAQUE
@@ -753,16 +754,6 @@ while game:
                 ESTADO = ANIME_ESTUDAR_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
-                ESTADO = GANHA_PONTO10
-                prof += 10
-                proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
-                up_prof10_class.kill()
-                up_prof10_class = upgrade(150,500,imagens, 'up_prof10')
-                up_prof_sprite10.add(up_prof10_class)
-                upgrade_som.play()
-
-        elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
-            if event.key == pygame.K_RETURN:
                 ESTADO = GANHA_PONTO15
                 prof += 15
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
@@ -770,6 +761,18 @@ while game:
                 up_prof15_class = upgrade(150,500,imagens, 'up_prof15')
                 up_prof_sprite15.add(up_prof15_class)
                 upgrade_som.play()
+
+
+        elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
+            if event.key == pygame.K_RETURN:
+                    ESTADO = GANHA_PONTO10
+                prof += 10
+                proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
+                up_prof10_class.kill()
+                up_prof10_class = upgrade(150,500,imagens, 'up_prof10')
+                up_prof_sprite10.add(up_prof10_class)
+                upgrade_som.play()
+
 
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15:
             upgrade_som.stop()
@@ -913,6 +916,7 @@ while game:
             if event.key == pygame.K_RETURN:
                 ESTADO = ATAQUE
                 pygame.mixer.music.stop()
+
         if ESTADO == DIA3 and dias ==2:
             dias+=1
 
@@ -927,6 +931,9 @@ while game:
     if ESTADO == INICIO:
         window.fill((0, 0, 0))
         window.blit(imagens['tela_inicial'], (0, 0))
+        if musica_inicial == 1:
+            star_wars.play()
+            musica_inicial +=1 
 
     elif ESTADO == QUARTO:
         window.fill((0, 0, 0))
@@ -955,6 +962,10 @@ while game:
         window.blit(imagens['pos_anime_anime'], (0, 0))
         window.blit(proficiencia, (10, 500))
         window.blit(imagens['shingeki'],(145,370))
+        pygame.mixer.music.pause()
+        if conta_sasa == 1:
+            sasageyo.play()
+            conta_sasa+=1
 
     elif ESTADO == ANIME_SERIE:
         window.blit(imagens['quarto'], (0, 0))
@@ -1021,6 +1032,10 @@ while game:
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['sad_anime'], (0, 0))
         window.blit(proficiencia, (10, 500))
+        sasageyo.stop()
+        if sad == 1:
+            naruto_sad.play()
+            sad+=1
     elif ESTADO == ESTUDAR_ESTUDAR:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
@@ -1120,6 +1135,12 @@ while game:
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['dia2_estudar'], (0, 0))
         window.blit(proficiencia, (10, 500))
+        sasageyo.stop()
+        naruto_sad.stop()
+        pygame.mixer.music.unpause()
+        if contador_loko == 1:
+            rise_and_shine.play()
+            contador_loko+=1
     elif ESTADO == ESTUDOU_MUITO:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
@@ -1144,6 +1165,106 @@ while game:
             window.blit(paciencia, (10, 400))
             window.blit(Dp, (ESPESSURA-200, 0))
             window.blit(imagens['ataque'],(0,450))
+            if entrada ==1:
+                Boss_battle.play()
+                entrada +=1
+    elif ESTADO == ATAQUE1_DIC:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque_dicionario'],(0,450))
+    elif ESTADO == ATAQUE1_FOR:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque_for'],(0,450))
+    elif ESTADO == ATAQUE1_INPUT:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque_input'],(0,450))
+    elif ESTADO == ATAQUE1_WHILE:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque_while'],(0,450))
+    elif ESTADO == ATAQUE2_DIC:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque2_dicionario'],(0,450))
+    elif ESTADO == ATAQUE2_IFELSE:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque2_ifelse'],(0,450))
+    elif ESTADO == ATAQUE2_INPUT:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque2_input'],(0,450))
+    elif ESTADO == ATAQUE2_LISTA:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque2_lista'],(0,450))
+     elif ESTADO == ATAQUE3_WHILE:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque3_while'],(0,450))
+    elif ESTADO == ATAQUE3_LISTA:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque3_lista'],(0,450))
+    elif ESTADO == ATAQUE3_FOR:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque3_for'],(0,450))
+    elif ESTADO == ATAQUE3_IFELSE:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['ataque3_ifelse'],(0,450))
+
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
             window.blit(imagens['background'], (0, 0))
@@ -1176,6 +1297,7 @@ while game:
             window.blit(paciencia, (10, 400))
             window.blit(Dp, (ESPESSURA-200, 0))
             window.blit(imagens['dano'],(0,430))
+            window.blit(situacao[attack],(0,400))
     elif ESTADO == ACAO_ATAQUE:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
@@ -1184,6 +1306,41 @@ while game:
             toshis_bravos.draw(window)
             window.blit(paciencia, (10, 400))
             window.blit(Dp, (ESPESSURA-200, 0))
+    elif ESTADO == LOOP:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis_bravos.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['loop'],(0,400))
+    elif ESTADO == INVALIDO:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis_bravos.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['invalido'],(0,400))
+    elif ESTADO == RANGE_ERRADO:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis_bravos.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['range_errado'],(0,400))
+    elif ESTADO == SEM_CONDICAO:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
+            sprites.draw(window)
+            toshis_bravos.draw(window)
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200,0))
+            window.blit(imagens['sem_condicao'],(0,400))
+    elif ESTADO == DIMINUIR_ESTRESSE:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['background'], (0, 0))
     
     
     elif ESTADO == FICOU_DP:
