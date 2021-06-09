@@ -47,11 +47,11 @@ background = pygame.image.load('imagens/fundo_galaxia.jpg').convert()
 
 imagens['background'] = pygame.transform.scale(background, (ESPESSURA, ALTURA))
 ataque = pygame.image.load("imagens/ct_ATAQUE.png")
-imagens['ataque'] = pygame.transform.scale(ataque, (ESPESSURA,170))
+imagens['ataque'] = pygame.transform.scale(ataque, (ESPESSURA,150))
 defesa = pygame.image.load("imagens/ct_DEFESA.png")
-imagens['defesa'] = pygame.transform.scale(defesa, (ESPESSURA,170))
+imagens['defesa'] = pygame.transform.scale(defesa, (ESPESSURA,150))
 fugir = pygame.image.load("imagens/ct_DESISTIR.png")
-imagens['fugir'] = pygame.transform.scale(fugir, (ESPESSURA,170))
+imagens['fugir'] = pygame.transform.scale(fugir, (ESPESSURA,150))
 #atacar1 = pygame.image.load("imagens/Atacar.png")
 #imagens['atacar1'] = pygame.transform.scale(atacar1, (ESPESSURA,170))
 toshi = pygame.image.load("imagens/Toshi_clear.png")
@@ -66,7 +66,10 @@ anima_ataque = pygame.image.load('imagens/binario2.png').convert()
 anima_ataque =pygame.transform.scale(anima_ataque, (50,50))
 personagem_quarto = pygame.image.load('imagens/Paola2_back.png').convert_alpha()
 imagens['personagem_quarto'] = pygame.transform.scale(personagem_quarto,(100,100))
-
+inicial = pygame.image.load('imagens/tela_inicial.jpg')
+imagens['tela_inicial'] = pygame.transform.scale(inicial,(ESPESSURA,ALTURA))
+bad_final = pygame.image.load('imagens/ficou_dp.jpg')
+imagens['ficou_dp'] = pygame.transform.scale(bad_final,(ESPESSURA,ALTURA))
 final_dia = pygame.image.load('imagens/fim_dia1.jpg')
 imagens['FIM_DIA_SO_ANIME'] = pygame.transform.scale(final_dia,(720,150))
 na_cadeira = pygame.image.load('imagens/Paola_cadeira_clear.png').convert_alpha()
@@ -109,14 +112,67 @@ imagens['serie_dormir'] = pygame.transform.scale(serie_dormir, (720,150))
 estudou_muito = pygame.image.load('imagens/ct_estudou_muito.jpg')
 imagens['estudou_muito'] = pygame.transform.scale(estudou_muito, (720,150))
 
+dia3 = pygame.image.load('imagens/dia3_cheio.jpg')
+imagens['dia3'] = pygame.transform.scale(dia3, (720,150))
+dia_da_prova =  pygame.image.load('imagens/ct_dia_da_prova.jpg')
+imagens['dia_da_prova'] = pygame.transform.scale(dia_da_prova, (720,150))
+
+ataque_dicionario = pygame.image.load('imagens/ct_ataque_dicionario.jpg')
+imagens['ataque_dicionario'] = pygame.transform.scale(ataque_dicionario , (720,150))
+ataque_for = pygame.image.load('imagens/ct_ataque_for.jpg')
+imagens['ataque_for'] = pygame.transform.scale(ataque_for , (720,150))
+ataque_input = pygame.image.load('imagens/ct_ataque_input.jpg')
+imagens['ataque_input'] = pygame.transform.scale(ataque_input , (720,150))
+ataque_while = pygame.image.load('imagens/ct_ataque_while.jpg')
+imagens['ataque_while'] = pygame.transform.scale(ataque_while , (720,150))
+ataque2_dicionario = pygame.image.load('imagens/ct_ataque2_dicionario.jpg')
+imagens['ataque2_dicionario'] = pygame.transform.scale(ataque2_dicionario , (720,150))
+ataque2_ifelse = pygame.image.load('imagens/ct_ataque2_ifelse.jpg')
+imagens['ataque2_ifelse'] = pygame.transform.scale(ataque2_ifelse , (720,150))
+ataque2_input = pygame.image.load('imagens/ct_ataque2_input.jpg')
+imagens['ataque2_input'] = pygame.transform.scale(ataque2_input , (720,150))
+ataque2_lista = pygame.image.load('imagens/ct_ataque2_lista.jpg')
+imagens['ataque2_lista'] = pygame.transform.scale(ataque2_lista , (720,150))
+ataque3_for = pygame.image.load('imagens/ct_ataque3_for.jpg')
+imagens['ataque3_for'] = pygame.transform.scale(ataque3_for , (720,150))
+ataque3_ifelse = pygame.image.load('imagens/ct_ataque3_ifelse.jpg')
+imagens['ataque3_ifelse'] = pygame.transform.scale(ataque3_ifelse , (720,150))
+ataque3_lista = pygame.image.load('imagens/ct_ataque3_lista.jpg')
+imagens['ataque3_lista'] = pygame.transform.scale(ataque3_lista , (720,150))
+ataque3_while = pygame.image.load('imagens/ct_ataque3_while.jpg')
+imagens['ataque3_while'] = pygame.transform.scale(ataque3_while , (720,150))
+
+atacar_lista = pygame.image.load('imagens/atacar_lista.jpg')
+imagens['atacar_lista'] = pygame.transform.scale(atacar_lista, (50,50))
+atacar_input = pygame.image.load('imagens/atacar_input.jpg')
+imagens['atacar_input'] = pygame.transform.scale(atacar_input, (50,50))
+atacar_for = pygame.image.load('imagens/atacar_for.jpg')
+imagens['atacar_for'] = pygame.transform.scale(atacar_for, (50,50))
+atacar_while = pygame.image.load('imagens/atacar_while.jpg')
+imagens['atacar_while'] = pygame.transform.scale(atacar_while, (50,50))
+atacar_dicionario = pygame.image.load('imagens/atacar_dicionario.jpg')
+imagens['atacar_dicionario'] =  pygame.transform.scale(atacar_dicionario, (50,50))
+atacar_ifelse = pygame.image.load('imagens/atacar_ifelse.jpg')
+imagens['atacar_ifelse'] = pygame.transform.scale(atacar_ifelse, (50,50))
+
+loop = pygame.image.load('imagens/ct_loop.jpg')
+imagens['loop'] = pygame.transform.scale(loop, (720,150))
+invalido = pygame.image.load('imagens/ct_invalido.jpg')
+imagens['invalido'] = pygame.transform.scale(invalido , (720,150))
+range_errado =pygame.image.load('imagens/ct_range.jpg')
+imagens['range_errado'] =pygame.transform.scale(range_errado , (720,150))
+sem_condicao = pygame.image.load('imagens/ct_sem_condicao.jpg')
+imagens['sem_condicao'] =pygame.transform.scale(sem_condicao , (720,150))
+indice_errado = pygame.image.load('imagens/ct_indice_errado.jpg')
+imagens['indice_errado'] = pygame.transform.scale(indice_errado , (720,150))
 
 
 
 
 #----- textos para aparecer no jogo ----
 font = pygame.font.SysFont(None, 48)
-life = 100
-paciencia = font.render('paciência:{0}'.format(life), True, (255,255,255))
+estresse = 0
+paciencia = font.render('Estresse:{0}'.format(estresse), True, (255,255,255))
 life2 = 0
 Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
 
@@ -272,8 +328,6 @@ up_prof_sprite20 = pygame.sprite.Group()
 
 avatar =  personagem(imagens['personagem'],sprites,projeteis,anima_ataque)
 
-avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,anima_ataque)
-
 vilao = Toshi(imagens['toshi'])
 
 vilao2 = Toshi2(imagens['toshi'])
@@ -289,7 +343,6 @@ up_prof_sprite20.add(up_prof20_class)
 
 
 sprites.add(avatar)
-acao.add(avatar2)
 toshis.add(vilao)
 toshis_bravos.add(vilao2)
 
@@ -298,47 +351,73 @@ game = True # condicao para o jogo continuar rodando
 clock = pygame.time.Clock()
 FPS = 30 #define velocidade dos quadros do jogo 
 
-ATAQUE = 0
-DEFESA = 1
-FUGIR = 2
-ATACAR = 3
-CONTRAATAQUE = 4
-ACAO_ATAQUE = 5
-QUARTO = 6
-QUARTO2 = 7
-ANIME = 8
-ESTUDAR = 9
-DORMIR = 10
-ANIME_ANIME = 11
-ANIME_ESTUD = 12
-SAD_ANIME = 13
-SAD_ANIME2 = 14
-ANIME_ESTUDAR_ESTUDAR = 15
-ESTUDAR_ESTUDAR = 16
-GANHA_PONTO15 = 17
-CONTINUAR_SIM = 18
-CONTINUAR_NAO = 19 
-RECOMECAR = 20
-FIM_DIA_SO_ANIME = 21
-GANHA_PONTO20 = 22
-GANHA_PONTO10 = 23
-CONTINUAR_SIM_1 = 24
-CONTINUAR_NAO_1 = 25
-GANHA_PONTO15_1 = 26
-FIM_DIA_ANIME_E_ESTUDA = 27
-ANIME_NAO_SERIE = 28
-ANIME_NAO_DORMIR = 29
-ANIME_SERIE = 30 
-DORMIR_MUITO = 31
-DIA2_ANIME = 32
-DIA2_ESTUDAR = 33
-DIA2_DORMIR = 34
-ESTUDAR_DORMIR = 35
-ESTUDAR_SERIE = 36
-SERIE_DORMIR = 37
-ESTUDOU_MUITO = 38
-ESTADO = QUARTO
+INICIO = 0
+FICOU_DP = 1
 
+QUARTO = 6 #Começo do jogo, com a data do dia 12/06 
+QUARTO2 = 7 # Segunda fala do jogo
+ANIME = 8 #Abre o primeiro menu de escolhas dentro do jogo selecionado na ação anime
+ESTUDAR = 9 #Abre o primeiro menu de escolhas dentro do jogo selecionado na ação estudar
+DORMIR = 10 #Abre o primeiro menu de escolhas dentro do jogo selecionado na ação dormir
+ANIME_ANIME = 11 #Coloca o personagem na cadeira com um anime na tela do computador com a mensagem de que o episodio acabou selecionando o continuar vendo anime
+ANIME_ESTUD = 12 #Coloca o personagem na cadeira com um anime na tela do computador com a mensagem de que o episodio acabou selecionando o estudar
+SAD_ANIME = 13 #Escolhendo continuar anime e mostrar o quanto vc perdeu tempo
+SAD_ANIME2 = 14 # mostra o quanto vc se sente vazio ao terminar o seu anime :( 
+ANIME_ESTUDAR_ESTUDAR = 15 #O personagem fica na cadeira mas troca de anime para academia python
+ESTUDAR_ESTUDAR = 16  #Coloca o personagem na cadeira , para academia python, sendo primeira escolha do dia antece ganha15
+GANHA_PONTO15 = 17  #Ganha 15 de proficiencia
+CONTINUAR_SIM = 18 #Pergunta se o jogador quer continuar selecionado SIIIM
+CONTINUAR_NAO = 19 #Pergunta se o jogador quer continuar selecionado nao, antecede estudar_serie
+
+FIM_DIA_SO_ANIME = 21 #fim do dia só quando vc só assiste anime ;-; 
+GANHA_PONTO20 = 22 #Ganha 20 de proficiencia depois de continuar_sim
+GANHA_PONTO10 = 23 #Ganha 10 de proficiencia
+CONTINUAR_SIM_1 = 24 #Depois de ganha 10 de proficiencia, pergunta se vc quer continuar estudando
+CONTINUAR_NAO_1 = 25 #Depois de ganha 10 de proficiencia, pergunta se vc quer nao continuar estudando
+GANHA_PONTO15_1 = 26 # Se você continua estudando ganha 15 ponto de proficiencia
+FIM_DIA_ANIME_E_ESTUDA = 27 #se vc assite 1 ep e estuda o res
+ANIME_NAO_SERIE = 28 #Você escolhe parar de estudar e selecionado serie
+ANIME_NAO_DORMIR = 29 #Você escolhe parar de estudar e selecionado dormir
+ANIME_SERIE = 30 # se vc seleciona serie  vem para ca
+DORMIR_MUITO = 31 #escolher dormir de primeira coisa no dia 
+DIA2_ANIME = 32 #RISE AND SHINEEEEE PRIMEIRA FALA DO SEGUNDO DIAA , SELECIONANDO ANIME
+DIA2_ESTUDAR = 33 #RISE AND SHINEEEEE PRIMEIRA FALA DO SEGUNDO DIAA, SELECIONANDO ESTUDAR
+DIA2_DORMIR = 34 #RISE AND SHINEEEEE PRIMEIRA FALA DO SEGUNDO DIAA, SELECIONANDO DORMIR 
+ESTUDAR_DORMIR = 35 # pergunta se quer dormir
+ESTUDAR_SERIE = 36 #pergunta se quer ver serie
+SERIE_DORMIR = 37 #final do dia quando escolhe serie apos estudar uma vez 
+ESTUDOU_MUITO = 38 #Depois de ganha 20 potno
+DIA3 = 39 #inicia o dia que você está ocupado o dia inteiro 
+PRE_TOSHI = 40
+# ATAQUE1_DIC =41
+# ATAQUE1_FOR =42
+# ATAQUE1_INPUT =43
+# ATAQUE1_WHILE =44
+# ATAQUE2_DIC =45
+# ATAQUE2_IFELSE =46
+# ATAQUE2_LISTA =47
+# ATAQUE2_INPUT =48
+# ATAQUE3_FOR =49
+# ATAQUE3_IFELSE =50
+# ATAQUE3_LISTA =51
+# ATAQUE3_WHILE =52
+# DIMINUIR_ESTRESSE = 62
+
+
+ATAQUE = 53
+DEFESA = 54
+DESISTIR = 55
+CONTRAATAQUE = 56
+ACAO_ATAQUE = 57
+
+LOOP = 58
+INVALIDO = 59
+RANGE_ERRADO =  60
+SEM_CONDICAO = 61   
+
+ESTADO = INICIO
+
+dias = 1
 
 while game:
     clock.tick(FPS)
@@ -348,9 +427,12 @@ while game:
         if event.type == pygame.QUIT:
             game = False
         # ações para alterar a caixa de diálogo
-        if event.type == pygame.KEYUP and ESTADO == ATAQUE:
+        if event.type == pygame.KEYUP and ESTADO == INICIO:
+            if event.key == pygame.K_RETURN:
+                ESTADO = QUARTO
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE:
             if event.key == pygame.K_UP:
-                ESTADO = FUGIR
+                ESTADO = DESISTIR
             if event.key == pygame.K_DOWN:
                 ESTADO = DEFESA
             if event.key == pygame.K_RETURN:
@@ -359,25 +441,23 @@ while game:
             if event.key == pygame.K_UP:
                 ESTADO = ATAQUE
             if event.key == pygame.K_DOWN:
-                ESTADO = FUGIR
-        elif event.type == pygame.KEYUP and ESTADO == FUGIR:
+                ESTADO = DESISTIR
+        elif event.type == pygame.KEYUP and ESTADO == DESISTIR:
             if event.key == pygame.K_UP:
                 ESTADO = DEFESA
             if event.key == pygame.K_DOWN:
                 ESTADO = ATAQUE
-        elif event.type == pygame.KEYUP and ESTADO == ATACAR:
-            if event.key == pygame.K_LEFT:
-                ESTADO = ATAQUE
-            if event.key == pygame.K_RETURN:
-                avatar2.ataque()
-                life2 -= 20
-                Dp = font.render('Dp:{}'.format(life2), True, (255,255,255))    
-                ESTADO = ACAO_ATAQUE
+            if event.key == pygame.K_RETURN:   
+                ESTADO = FICOU_DP
         elif event.type == pygame.KEYUP and ESTADO == CONTRAATAQUE:
             if event.key == pygame.K_RETURN:
                 ESTADO = ATAQUE
-                life -= 15
-                paciencia = font.render('paciencia:{0}'.format(life), True,(255,255,255))
+                if prof > 85:
+                    estresse += 8
+                    paciencia = font.render('Estresse:{0}'.format(estresse), True,(255,255,255))
+                else:
+                    estresse += 20
+                    paciencia = font.render('Estresse:{0}'.format(estresse), True,(255,255,255))
         elif event.type == pygame.KEYUP and ESTADO == QUARTO:
             if event.key == pygame.K_RETURN:
                 ESTADO = QUARTO2
@@ -406,7 +486,11 @@ while game:
             if event.key == pygame.K_RETURN:
                 ESTADO = DORMIR_MUITO
         elif event.type == pygame.KEYUP and ESTADO == DORMIR_MUITO:
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN and dias ==2:
+                ESTADO = DIA3
+            if event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == DIA2_ESTUDAR:
             if event.key == pygame.K_DOWN:
@@ -420,11 +504,15 @@ while game:
                 ESTADO = DIA2_DORMIR
             if event.key == pygame.K_UP:
                 ESTADO = DIA2_ESTUDAR
+            if event.key == pygame.K_RETURN:
+                ESTADO = ANIME_ANIME
         elif event.type == pygame.KEYUP and ESTADO == DIA2_DORMIR:
             if event.key == pygame.K_DOWN:
                 ESTADO = DIA2_ESTUDAR
             if event.key == pygame.K_UP:
                 ESTADO = DIA2_ANIME
+            if event.key == pygame.K_RETURN:
+                ESTADO = DORMIR_MUITO
                 
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ANIME :
             if event.key == pygame.K_DOWN:
@@ -440,7 +528,11 @@ while game:
             if event.key == pygame.K_RETURN:
                 ESTADO = FIM_DIA_SO_ANIME
         elif event.type == pygame.KEYUP and ESTADO == FIM_DIA_SO_ANIME:
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN and dias ==2:
+                ESTADO = DIA3
+            if event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUD:
             if event.key == pygame.K_DOWN:
@@ -454,11 +546,19 @@ while game:
                 ESTADO = GANHA_PONTO10
                 prof += 10
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
+                up_prof10_class.kill()
+                up_prof10_class = upgrade(150,500,imagens, 'up_prof10')
+                up_prof_sprite10.add(up_prof10_class)
+
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
                 ESTADO = GANHA_PONTO15
                 prof += 15
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
+                up_prof15_class.kill()
+                up_prof15_class = upgrade(150,500,imagens, 'up_prof15')
+                up_prof_sprite15.add(up_prof15_class)
+
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15:
             if event.key == pygame.K_RETURN:
                 ESTADO = CONTINUAR_SIM
@@ -474,12 +574,18 @@ while game:
                 ESTADO = GANHA_PONTO20
                 prof += 20
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
-
+                up_prof20_class.kill()
+                up_prof20_class = upgrade(150,500,imagens, 'up_prof20')
+                up_prof_sprite20.add(up_prof20_class)
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO20:
             if event.key == pygame.K_RETURN:
                 ESTADO = ESTUDOU_MUITO
         elif  event.type == pygame.KEYUP and ESTADO == ESTUDOU_MUITO:
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN and dias ==2:
+                ESTADO = DIA3
+            if event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_SIM_1:
             if event.key == pygame.K_UP:
@@ -490,6 +596,9 @@ while game:
                 ESTADO = GANHA_PONTO15_1
                 prof += 15
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255)) 
+                up_prof15_class.kill()
+                up_prof15_class = upgrade(150,500,imagens, 'up_prof15')
+                up_prof_sprite15.add(up_prof15_class)
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO_1:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_SIM_1
@@ -512,13 +621,22 @@ while game:
                 ESTADO = ANIME_NAO_SERIE
             if event.key == pygame.K_DOWN:
                 ESTADO = ANIME_NAO_SERIE
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN and dias ==2:
+                ESTADO = DIA3
+            if  event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15_1:
             if event.key == pygame.K_RETURN:
                 ESTADO = FIM_DIA_ANIME_E_ESTUDA
         elif event.type == pygame.KEYUP and ESTADO == FIM_DIA_ANIME_E_ESTUDA:
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN and dias ==2:
+                ESTADO = DIA3
+                naruto_sad.play()
+            if event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO:
             if event.key == pygame.K_UP:
@@ -540,20 +658,42 @@ while game:
                 ESTADO = ESTUDAR_SERIE
             if event.key == pygame.K_DOWN:
                 ESTADO = ESTUDAR_SERIE
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_RETURN and dias ==2:
+                ESTADO = DIA3
+            if   event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == SERIE_DORMIR:
+            if event.key == pygame.K_RETURN and dias==2:
+                ESTADO = DIA3
+                naruto_sad.play()
+            if event.key == pygame.K_RETURN and dias ==3:
+                ESTADO = PRE_TOSHI
+            elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
+                ESTADO = DIA2_ESTUDAR
+        elif event.type == pygame.KEYUP and ESTADO == DIA3:
             if event.key == pygame.K_RETURN:
                 ESTADO = DIA2_ESTUDAR
-        if  event.type == pygame.KEYUP:
-            if event.key == pygame.K_0:
-                ESTADO = ANIME
+        elif event.type == pygame.KEYUP and ESTADO == PRE_TOSHI:
+            if event.key == pygame.K_RETURN:
+                ESTADO = ATAQUE
+        if ESTADO == DIA3 and dias ==2:
+            dias+=1
 
     hits = pygame.sprite.spritecollide(vilao2,projeteis, True)
     if len(hits) > 0:
-        ESTADO = CONTRAATAQUE   
+        numero = random.randint(0,2)
+        if numero == 1:
+            ESTADO = CONTRAATAQUE
+        else:
+            ESTADO = ATAQUE 
+    
+    if ESTADO == INICIO:
+        window.fill((0, 0, 0))
+        window.blit(imagens['tela_inicial'], (0, 0))
 
-    if ESTADO == QUARTO:
+    elif ESTADO == QUARTO:
         window.fill((0, 0, 0))
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
@@ -594,11 +734,11 @@ while game:
         window.blit(imagens['pos_anime_estudar'], (0, 0))
         window.blit(proficiencia, (10, 500))
         window.blit(imagens['shingeki'],(145,370))
-    elif ESTADO == RECOMECAR:
-        window.fill((0, 0, 0))
-        window.blit(imagens['quarto'], (0, 0))
-        window.blit(imagens['personagem_quarto'], (500, 390))
-        window.blit(imagens['recomeco'], (0, 0))
+    # elif ESTADO == RECOMECAR:
+    #     window.fill((0, 0, 0))
+    #     window.blit(imagens['quarto'], (0, 0))
+    #     window.blit(imagens['personagem_quarto'], (500, 390))
+    #     window.blit(imagens['recomeco'], (0, 0))
     elif ESTADO == CONTINUAR_SIM:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['na_cadeira'], (270, 400))
@@ -640,7 +780,7 @@ while game:
         window.blit(imagens['personagem_quarto'], (270, 400))
         window.blit(imagens['serie_dormir'], (0, 0))
         window.blit(proficiencia, (10, 500))
-
+        window.blit(imagens['series'],(145,370))
     elif ESTADO == SAD_ANIME:
         window.blit(imagens['quarto'], (0, 0))
         window.blit(imagens['personagem_quarto'], (500, 390))
@@ -750,46 +890,56 @@ while game:
         window.blit(imagens['personagem_quarto'], (500, 390))
         window.blit(imagens['estudou_muito'], (0, 0))
         window.blit(proficiencia, (10, 500))
+    elif ESTADO == DIA3:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['dia3'], (0, 0))
+        window.blit(proficiencia, (10, 500))
+    elif ESTADO == PRE_TOSHI:
+        window.blit(imagens['quarto'], (0, 0))
+        window.blit(imagens['personagem_quarto'], (500, 390))
+        window.blit(imagens['dia_da_prova'], (0, 0))
+        window.blit(proficiencia, (10, 500))
 
     elif ESTADO == ATAQUE:    
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
             toshis.draw(window)
-            window.blit(paciencia, (0, 396))
-            window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(imagens['ataque'],(0,430))
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200, 0))
+            window.blit(imagens['ataque'],(0,450))
     elif ESTADO == DEFESA:
             window.fill((0, 0, 0))
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
             toshis.draw(window)
-            window.blit(paciencia, (0, 396))
-            window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(imagens['defesa'],(0,430))
-    elif ESTADO == FUGIR:
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200, 0))
+            window.blit(imagens['defesa'],(0,450))
+    elif ESTADO == DESISTIR:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
             toshis.draw(window)
-            window.blit(paciencia, (0, 396))
-            window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(imagens['fugir'],(0,430))
-    elif ESTADO == ATACAR:
-            window.fill((0, 0, 0))  
-            window.blit(imagens['background'], (0, 0))
-            sprites.draw(window)
-            toshis.draw(window)
-            window.blit(paciencia, (0, 396))
-            window.blit(Dp, (ESPESSURA-110, 0))
-            window.blit(imagens['atacar1'],(0,430))
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200, 0))
+            window.blit(imagens['fugir'],(0,450))
+    # elif ESTADO == ATACAR:
+    #         window.fill((0, 0, 0))  
+    #         window.blit(imagens['background'], (0, 0))
+    #         sprites.draw(window)
+    #         toshis.draw(window)
+    #         window.blit(paciencia, (10, 400))
+    #         window.blit(Dp, (ESPESSURA-200, 0))
+    #         window.blit(imagens['atacar1'],(0,430))
     elif ESTADO == CONTRAATAQUE:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
             toshis_bravos.draw(window)
-            window.blit(paciencia, (0, 396))
-            window.blit(Dp, (ESPESSURA-110, 0))
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200, 0))
             window.blit(imagens['dano'],(0,430))
     elif ESTADO == ACAO_ATAQUE:
             window.fill((0, 0, 0))  
@@ -797,8 +947,13 @@ while game:
             acao.draw(window)
             projeteis.draw(window)
             toshis_bravos.draw(window)
-            window.blit(paciencia, (0, 396))
-            window.blit(Dp, (ESPESSURA-110, 0))
+            window.blit(paciencia, (10, 400))
+            window.blit(Dp, (ESPESSURA-200, 0))
+    
+    
+    elif ESTADO == FICOU_DP:
+            window.fill((0, 0, 0))  
+            window.blit(imagens['ficou_dp'], (0, 0))
 
     sprites.update()
     acao.update()
