@@ -6,7 +6,8 @@ Aqui você vai experimentar o gostinho do seu futuro em dessoft... seja ele bom 
 Primeiro, você passará por escolhas que podem ou não ajuda-lo na hora da grande prova.
 Depois, você chegará na batalha final.
 Nessa batalha você terá que atingir 100 pontos, caso contrário, você será reprovado na disciplina :(
-Só que cuidado, durante a batalha você corre o risco de se estressar demais... você pode usar sua defesa duas vezes para reduzir seu nível de estresse.
+Só que cuidado, durante a batalha você corre o risco de se estressar demais... Se você chegar a 100 pontos de estresse, está automaticamente reprovado na disciplina.
+Você pode usar sua defesa duas vezes para reduzir seu nível de estresse.
 
 Boa Sorte! E que a força esteja com você...
 
