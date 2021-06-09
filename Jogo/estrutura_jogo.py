@@ -680,14 +680,11 @@ def tela_jogo(window):
             else:
                 ESTADO = ATAQUE
 
-
-        if life2 == 100:
+        if life2 >= 100:
             ESTADO = PASSOU 
-        if estresse == 100:
+        if estresse >= 100:
             ESTADO = FICOU_DP
                 
-
-
         if ESTADO == INICIO:
             window.fill((0, 0, 0))
             window.blit(imagens['tela_inicial'], (0, 0))
@@ -918,7 +915,7 @@ def tela_jogo(window):
                 window.blit(Dp, (ESPESSURA-150,0))
                 window.blit(imagens['ataque'],(0,450))
                 if entrada ==1:
-                    Boss_battle.play()
+                    Boss_battle.play(loops=-1)
                     entrada +=1
         elif ESTADO == ATAQUE1_DIC:
                 window.fill((0, 0, 0))  
@@ -1016,8 +1013,6 @@ def tela_jogo(window):
                 window.blit(paciencia, (10, 400))
                 window.blit(Dp, (ESPESSURA-150,0))
                 window.blit(imagens['ataque3_ifelse'],(0,450))
-
-
         
         elif ESTADO == DEFESA:
                 window.fill((0, 0, 0))
@@ -1042,15 +1037,7 @@ def tela_jogo(window):
                 toshis.draw(window)
                 window.blit(paciencia, (10, 400))
                 window.blit(Dp, (ESPESSURA-150,0))
-                window.blit(imagens['fugir'],(0,450))
-        # elif ESTADO == ATACAR:
-        #         window.fill((0, 0, 0))  
-        #         window.blit(imagens['background'], (0, 0))
-        #         sprites.draw(window)
-        #         toshis.draw(window)
-        #         window.blit(paciencia, (0, 396))
-        #         window.blit(Dp, (ESPESSURA-150,0))
-        #         window.blit(imagens['atacar1'],(0,400))
+                window.blit(imagens['fugir'],(0,450))       
         elif ESTADO == CONTRAATAQUE:
                 window.fill((0, 0, 0))  
                 window.blit(imagens['background'], (0, 0))
@@ -1113,7 +1100,7 @@ def tela_jogo(window):
                 window.fill((0, 0, 0))  
                 window.blit(imagens['ficou_dp'], (0, 0))
                 if fim_dp == 1:
-                    sad_fim.play() # VAI FICAR ASSIM PQ VAI SOFRER SIM 
+                    sad_fim.play()
                     fim_dp +=1 
         elif ESTADO == PASSOU:
                 Boss_battle.stop()
@@ -1121,7 +1108,7 @@ def tela_jogo(window):
                 window.blit(imagens['passamo'], (0, 0))
                 if fim_bom == 1:
                     winamo.play()
-                    fim_bom+=1
+                    fim_bom +=1
         elif ESTADO == ESTRESSADAH:
                 window.fill((0, 0, 0))
                 window.blit(imagens['background'], (0, 0))
