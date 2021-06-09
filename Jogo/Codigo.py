@@ -2,6 +2,7 @@ import pygame
 import random
 
 pygame.init()
+pygame.mixer.init()
 
 # ------Gerar a tela do jogo --------
 ALTURA = 600
@@ -166,7 +167,17 @@ imagens['sem_condicao'] =pygame.transform.scale(sem_condicao , (720,150))
 indice_errado = pygame.image.load('imagens/ct_indice_errado.jpg')
 imagens['indice_errado'] = pygame.transform.scale(indice_errado , (720,150))
 
-
+#sons do jogo
+pygame.mixer.music.load('sons/Musica_tema.mp3')
+pygame.mixer.music.set_volume(0.6)
+rise_and_shine = pygame.mixer.Sound('sons/Rise_and_shinee.mp3')
+Boss_battle = pygame.mixer.Sound('sons/Boos_battle.mp3')
+Boss_battle.set_volume(0.3)
+sasageyo = pygame.mixer.Sound('sons/Sasageyooo_official.mp3')
+naruto_sad = pygame.mixer.Sound('sons/Naruto_sad_funk_jogo.mp3')
+netflix = pygame.mixer.Sound('sons/Netflix.mp3')
+upgrade_som = pygame.mixer.Sound('sons/upgrade_real.mp3')
+star_wars = pygame.mixer.Sound('sons/tema_inicial.mp3')
 
 
 #----- textos para aparecer no jogo ----
@@ -389,19 +400,19 @@ SERIE_DORMIR = 37 #final do dia quando escolhe serie apos estudar uma vez
 ESTUDOU_MUITO = 38 #Depois de ganha 20 potno
 DIA3 = 39 #inicia o dia que você está ocupado o dia inteiro 
 PRE_TOSHI = 40
-# ATAQUE1_DIC =41
-# ATAQUE1_FOR =42
-# ATAQUE1_INPUT =43
-# ATAQUE1_WHILE =44
-# ATAQUE2_DIC =45
-# ATAQUE2_IFELSE =46
-# ATAQUE2_LISTA =47
-# ATAQUE2_INPUT =48
-# ATAQUE3_FOR =49
-# ATAQUE3_IFELSE =50
-# ATAQUE3_LISTA =51
-# ATAQUE3_WHILE =52
-# DIMINUIR_ESTRESSE = 62
+ATAQUE1_DIC =41
+ATAQUE1_FOR =42
+ATAQUE1_INPUT =43
+ATAQUE1_WHILE =44
+ATAQUE2_DIC =45
+ATAQUE2_IFELSE =46
+ATAQUE2_LISTA =47
+ATAQUE2_INPUT =48
+ATAQUE3_FOR =49
+ATAQUE3_IFELSE =50
+ATAQUE3_LISTA =51
+ATAQUE3_WHILE =52
+DIMINUIR_ESTRESSE = 62
 
 
 ATAQUE = 53
@@ -417,7 +428,22 @@ SEM_CONDICAO = 61
 
 ESTADO = INICIO
 
+contador_loko = 1
+sad = 1
+entrada = 1
+ordem_ataque = 1
+conta_sasa = 1
 dias = 1
+musica_inicial = 1
+situacao = {}
+
+situacao['atacar_while'] = imagens['loop']
+situacao['atacar_for'] = imagens['range_errado']
+situacao['atacar_input'] = imagens['invalido']
+situacao['atacar_dicionario'] = imagens['invalido']    
+situacao['atacar_ifelse'] = imagens['sem_condicao']
+situacao['atacar_lista'] = imagens['indice_errado']
+
 
 while game:
     clock.tick(FPS)
@@ -430,18 +456,191 @@ while game:
         if event.type == pygame.KEYUP and ESTADO == INICIO:
             if event.key == pygame.K_RETURN:
                 ESTADO = QUARTO
+                star_wars.stop()
+                pygame.mixer.music.play(loops=-1)
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE:
             if event.key == pygame.K_UP:
                 ESTADO = DESISTIR
             if event.key == pygame.K_DOWN:
                 ESTADO = DEFESA
+
+            if event.key == pygame.K_RETURN and ordem_ataque == 1:
+                ESTADO = ATAQUE1_WHILE
+                ordem_ataque+=1
+            elif event.key == pygame.K_RETURN and ordem_ataque == 2:
+                ESTADO = ATAQUE2_INPUT
+                ordem_ataque+=1
+            elif event.key == pygame.K_RETURN and ordem_ataque == 3:
+                ESTADO = ATAQUE3_LISTA
+                ordem_ataque = 1
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE1_WHILE:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE1_DIC
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE1_FOR
             if event.key == pygame.K_RETURN:
-                ESTADO = ATACAR
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_while'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                attack = 'atacar_while'
+                ESTADO = ACAO_ATAQUE
+
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE1_FOR:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE1_WHILE
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE1_INPUT
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_for'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_for'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE1_INPUT:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE1_FOR
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE1_DIC
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_input'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                attack = 'atacar_input'
+                ESTADO = ACAO_ATAQUE
+
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE1_DIC:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE1_INPUT
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE1_WHILE
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_dicionario'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_dicionario'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_INPUT:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE2_IFELSE
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE2_LISTA
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_input'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_input'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_LISTA:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE2_INPUT
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE2_DIC
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_lista'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_lista'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_DIC:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE2_LISTA
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE2_IFELSE
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_dicionario'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                attack = 'atacar_dicionario'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_IFELSE:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE2_DIC
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE2_INPUT
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_ifelse'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_ifelse'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_LISTA:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE3_WHILE
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE3_IFELSE
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_lista'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_lista'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_IFELSE:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE3_LISTA
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE3_FOR
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_ifelse'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                attack = 'atacar_ifelse'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_FOR:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE3_IFELSE
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE3_WHILE
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_for'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_for'
+                ESTADO = ACAO_ATAQUE
+        elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_WHILE:
+            if event.key == pygame.K_UP:
+                ESTADO = ATAQUE3_FOR
+            if event.key == pygame.K_DOWN:
+                ESTADO = ATAQUE3_LISTA
+
+
+            if event.key == pygame.K_RETURN:
+                avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_while'])
+                acao.add(avatar2)
+                avatar2.ataque()
+                life2 -= (5 + prof/10)* (100-estresse)/100
+                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                attack = 'atacar_while'
+                ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == DEFESA:
             if event.key == pygame.K_UP:
                 ESTADO = ATAQUE
             if event.key == pygame.K_DOWN:
                 ESTADO = DESISTIR
+            if event.key == pygame.K_RETURN:
+                ESTADO = DIMINUIR_ESTRESSE
+                estresse -= 2
         elif event.type == pygame.KEYUP and ESTADO == DESISTIR:
             if event.key == pygame.K_UP:
                 ESTADO = DEFESA
@@ -488,10 +687,13 @@ while game:
         elif event.type == pygame.KEYUP and ESTADO == DORMIR_MUITO:
             if event.key == pygame.K_RETURN and dias ==2:
                 ESTADO = DIA3
+                naruto_sad.play()
             if event.key == pygame.K_RETURN and dias ==3:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias+=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == DIA2_ESTUDAR:
             if event.key == pygame.K_DOWN:
                 ESTADO = DIA2_ANIME
@@ -521,25 +723,33 @@ while game:
                 ESTADO = ANIME_ESTUD
             if event.key == pygame.K_RETURN:
                 ESTADO = SAD_ANIME
+                conta_sasa = 1
         elif event.type == pygame.KEYUP and ESTADO == SAD_ANIME:
             if event.key == pygame.K_RETURN:
                 ESTADO = SAD_ANIME2
+                sad = 1
         elif event.type == pygame.KEYUP and ESTADO == SAD_ANIME2:
             if event.key == pygame.K_RETURN:
                 ESTADO = FIM_DIA_SO_ANIME
         elif event.type == pygame.KEYUP and ESTADO == FIM_DIA_SO_ANIME:
+            naruto_sad.stop()
             if event.key == pygame.K_RETURN and dias ==2:
                 ESTADO = DIA3
+                naruto_sad.play()
             if event.key == pygame.K_RETURN and dias ==3:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias +=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUD:
             if event.key == pygame.K_DOWN:
                 ESTADO = ANIME_ANIME
             if event.key == pygame.K_UP:
                 ESTADO = ANIME_ANIME
             if event.key == pygame.K_RETURN:
+                sasageyo.stop()
+                conta_sasa = 1
                 ESTADO = ANIME_ESTUDAR_ESTUDAR
         elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
@@ -549,6 +759,7 @@ while game:
                 up_prof10_class.kill()
                 up_prof10_class = upgrade(150,500,imagens, 'up_prof10')
                 up_prof_sprite10.add(up_prof10_class)
+                upgrade_som.play()
 
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
@@ -558,11 +769,14 @@ while game:
                 up_prof15_class.kill()
                 up_prof15_class = upgrade(150,500,imagens, 'up_prof15')
                 up_prof_sprite15.add(up_prof15_class)
+                upgrade_som.play()
 
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15:
+            upgrade_som.stop()
             if event.key == pygame.K_RETURN:
                 ESTADO = CONTINUAR_SIM
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO10:
+            upgrade_som.stop()
             if event.key == pygame.K_RETURN:
                 ESTADO = CONTINUAR_SIM_1
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_SIM:
@@ -577,16 +791,21 @@ while game:
                 up_prof20_class.kill()
                 up_prof20_class = upgrade(150,500,imagens, 'up_prof20')
                 up_prof_sprite20.add(up_prof20_class)
+                upgrade_som.play()
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO20:
+            upgrade_som.stop()
             if event.key == pygame.K_RETURN:
                 ESTADO = ESTUDOU_MUITO
         elif  event.type == pygame.KEYUP and ESTADO == ESTUDOU_MUITO:
             if event.key == pygame.K_RETURN and dias ==2:
                 ESTADO = DIA3
+                upgrade_som.play()
             if event.key == pygame.K_RETURN and dias ==3:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias+=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_SIM_1:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_NAO_1
@@ -599,6 +818,7 @@ while game:
                 up_prof15_class.kill()
                 up_prof15_class = upgrade(150,500,imagens, 'up_prof15')
                 up_prof_sprite15.add(up_prof15_class)
+                upgrade_som.play()
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO_1:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_SIM_1
@@ -609,6 +829,7 @@ while game:
         elif event.type == pygame.KEYUP and ESTADO == ANIME_NAO_SERIE:
             if event.key == pygame.K_RETURN:
                 ESTADO = ANIME_SERIE
+                netflix.play()
             if event.key == pygame.K_UP:
                 ESTADO = ANIME_NAO_DORMIR
             if event.key == pygame.K_DOWN:
@@ -623,11 +844,15 @@ while game:
                 ESTADO = ANIME_NAO_SERIE
             if event.key == pygame.K_RETURN and dias ==2:
                 ESTADO = DIA3
+                naruto_sad.play()
             if  event.key == pygame.K_RETURN and dias ==3:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias+=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == GANHA_PONTO15_1:
+            upgrade_som.stop()
             if event.key == pygame.K_RETURN:
                 ESTADO = FIM_DIA_ANIME_E_ESTUDA
         elif event.type == pygame.KEYUP and ESTADO == FIM_DIA_ANIME_E_ESTUDA:
@@ -638,6 +863,8 @@ while game:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias+=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == CONTINUAR_NAO:
             if event.key == pygame.K_UP:
                 ESTADO = CONTINUAR_SIM
@@ -653,6 +880,7 @@ while game:
                 ESTADO = ESTUDAR_DORMIR
             if event.key == pygame.K_RETURN:
                 ESTADO = SERIE_DORMIR
+            netflix.play()
         elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_DORMIR:
             if event.key == pygame.K_UP:
                 ESTADO = ESTUDAR_SERIE
@@ -660,10 +888,13 @@ while game:
                 ESTADO = ESTUDAR_SERIE
             if event.key == pygame.K_RETURN and dias ==2:
                 ESTADO = DIA3
+                naruto_sad.play()
             if   event.key == pygame.K_RETURN and dias ==3:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias+=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == SERIE_DORMIR:
             if event.key == pygame.K_RETURN and dias==2:
                 ESTADO = DIA3
@@ -672,12 +903,16 @@ while game:
                 ESTADO = PRE_TOSHI
             elif event.key == pygame.K_RETURN and dias ==1 or dias >2:
                 ESTADO = DIA2_ESTUDAR
+                dias +=1
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == DIA3:
             if event.key == pygame.K_RETURN:
                 ESTADO = DIA2_ESTUDAR
+                contador_loko=1
         elif event.type == pygame.KEYUP and ESTADO == PRE_TOSHI:
             if event.key == pygame.K_RETURN:
                 ESTADO = ATAQUE
+                pygame.mixer.music.stop()
         if ESTADO == DIA3 and dias ==2:
             dias+=1
 
