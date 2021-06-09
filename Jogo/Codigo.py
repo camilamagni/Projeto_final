@@ -185,7 +185,7 @@ font = pygame.font.SysFont(None, 48)
 estresse = 0
 paciencia = font.render('Estresse:{0}'.format(estresse), True, (255,255,255))
 life2 = 0
-Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
 
 font2 = pygame.font.SysFont(None, 32)
 prof= 10
@@ -364,7 +364,7 @@ FPS = 30 #define velocidade dos quadros do jogo
 
 INICIO = 0
 FICOU_DP = 1
-
+PASSOU = 2
 QUARTO = 6 #Começo do jogo, com a data do dia 12/06 
 QUARTO2 = 7 # Segunda fala do jogo
 ANIME = 8 #Abre o primeiro menu de escolhas dentro do jogo selecionado na ação anime
@@ -482,8 +482,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_while'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_while'
                 ESTADO = ACAO_ATAQUE
 
@@ -496,8 +498,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_for'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_for'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE1_INPUT:
@@ -509,8 +513,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_input'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_input'
                 ESTADO = ACAO_ATAQUE
 
@@ -523,8 +529,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_dicionario'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_dicionario'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_INPUT:
@@ -536,8 +544,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_input'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_input'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_LISTA:
@@ -549,8 +559,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_lista'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_lista'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_DIC:
@@ -562,8 +574,10 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_dicionario'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                life2 += (5 + prof/10)* (100-estresse)/100
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_dicionario'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE2_IFELSE:
@@ -575,8 +589,9 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_ifelse'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_ifelse'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_LISTA:
@@ -588,8 +603,9 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_lista'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_lista'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_IFELSE:
@@ -601,8 +617,9 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_ifelse'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255)) 
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_ifelse'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_FOR:
@@ -614,8 +631,9 @@ while game:
                 avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_for'])
                 acao.add(avatar2)
                 avatar2.ataque()
-                life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 attack = 'atacar_for'
                 ESTADO = ACAO_ATAQUE
         elif event.type == pygame.KEYUP and ESTADO == ATAQUE3_WHILE:
@@ -630,8 +648,9 @@ while game:
                 acao.add(avatar2)
                 avatar2.ataque()
                 life2 -= (5 + prof/10)* (100-estresse)/100
-                Dp = font.render('Dp:{0}'.format(life2), True, (255,255,255))
-                attack = 'atacar_while'
+                if life2 >= 100:
+                    life2 = 100
+                Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
                 ESTADO = ACAO_ATAQUE
 
         elif event.type == pygame.KEYUP and ESTADO == DEFESA:
@@ -765,7 +784,7 @@ while game:
 
         elif event.type == pygame.KEYUP and ESTADO == ANIME_ESTUDAR_ESTUDAR:
             if event.key == pygame.K_RETURN:
-                    ESTADO = GANHA_PONTO10
+                ESTADO = GANHA_PONTO10
                 prof += 10
                 proficiencia = font2.render('proficiência:{0}'.format(prof), True, (255,255,255))
                 up_prof10_class.kill()
@@ -916,14 +935,16 @@ while game:
             if event.key == pygame.K_RETURN:
                 ESTADO = ATAQUE
                 pygame.mixer.music.stop()
+        if life2 == 100:
+            ESTADO = PASSOU 
 
         if ESTADO == DIA3 and dias ==2:
             dias+=1
 
     hits = pygame.sprite.spritecollide(vilao2,projeteis, True)
     if len(hits) > 0:
-        numero = random.randint(0,2)
-        if numero == 1:
+        numero = random.randint(0,5)
+        if numero == 1 or numero == 5 or numero == 3:
             ESTADO = CONTRAATAQUE
         else:
             ESTADO = ATAQUE 
@@ -1232,7 +1253,7 @@ while game:
             window.blit(paciencia, (10, 400))
             window.blit(Dp, (ESPESSURA-200,0))
             window.blit(imagens['ataque2_lista'],(0,450))
-     elif ESTADO == ATAQUE3_WHILE:
+    elif ESTADO == ATAQUE3_WHILE:
             window.fill((0, 0, 0))  
             window.blit(imagens['background'], (0, 0))
             sprites.draw(window)
@@ -1346,6 +1367,10 @@ while game:
     elif ESTADO == FICOU_DP:
             window.fill((0, 0, 0))  
             window.blit(imagens['ficou_dp'], (0, 0))
+    
+    elif ESTADO == PASSOU:
+            window.fill((0, 0, 0))  
+            # window.blit(imagens[''], (0, 0)) #IMAGEM AINDA VAI CHEGAR
 
     sprites.update()
     acao.update()
