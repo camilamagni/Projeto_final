@@ -628,6 +628,7 @@ def tela_jogo(window):
                     ESTADO = ESTUDAR_DORMIR
                 if event.key == pygame.K_RETURN:
                     ESTADO = SERIE_DORMIR
+                    netflix.play()
             elif event.type == pygame.KEYUP and ESTADO == ESTUDAR_DORMIR:
                 if event.key == pygame.K_UP:
                     ESTADO = ESTUDAR_SERIE
