@@ -198,7 +198,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_while'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
@@ -214,7 +214,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_for'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -229,7 +229,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_input'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
@@ -245,7 +245,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_dicionario'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -260,7 +260,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_input'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -275,7 +275,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_lista'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -290,7 +290,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_dicionario'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
@@ -305,7 +305,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_ifelse'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -320,7 +320,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_lista'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -335,7 +335,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_ifelse'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255)) 
@@ -350,7 +350,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_for'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
@@ -365,7 +365,7 @@ def tela_jogo(window):
                     avatar2 =  personagem2(imagens['personagem'],sprites,projeteis,imagens['atacar_while'])
                     acao.add(avatar2)
                     avatar2.ataque()
-                    life2 += int((5 + prof/10)* (100-estresse)/100)
+                    life2 += ((5 + prof/10)* (100-estresse)/100)
                     if life2 >= 100:
                         life2 = 100
                     Dp = font.render('Nota:{0}'.format(life2), True, (255,255,255))
